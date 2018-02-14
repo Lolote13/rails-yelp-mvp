@@ -1,2 +1,18 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <p><%= @restaurant.category %></p>
+
+   <ul class="list-group">
+    <% if !@restaurant.reviews.nil? %>
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          <%= review.content %> | <%= review.rating %>/5
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <%= link_to "Create new review", new_restaurant_review_path(@restaurant), {class: "btn btn-primary"} %>
+  <%= link_to "Back to list", restaurants_path(), {class: "btn btn-primary"} %>
+</div>
